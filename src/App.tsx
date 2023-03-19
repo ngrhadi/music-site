@@ -1,34 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth';
+import { Counter } from './redux/features/counter/Counter';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import HomeAccount from './pages/HomeAccount';
+import Cookies from 'js-cookie';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isAuth, setIsAuth } = useAuth();
+  const backToHome = useNavigate();
+  const cookies = Cookies.get('token');
 
+  console.log(cookies);
+  console.log(isAuth);
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div
+      style={{
+        minHeight: 'calc(100svh - 30svh)',
+        margin: '20px auto',
+      }}
+    >
+      <Routes>
+        {cookies !== undefined ? (
+          <>
+            <Route path="/" element={<Home />}></Route>
+            <Route
+              path="/home"
+              element={
+                <HomeAccount
+                  isAuth={isAuth}
+                  backToHome={backToHome}
+                  cookies={cookies}
+                />
+              }
+            />
+          </>
+        ) : (
+          <Route path="/" element={<Login setIsAuth={setIsAuth} />} />
+        )}
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": "1239879123",
+      "username": "admin",
+      "password": "admin",
+      "email": "admin@email.com",
+      "favorite-music": [
+        {
+          "title": "Something is happening",
+          "description": "Something is happening description",
+          "year": "2003"
+        }
+      ]
+    },
+    {
+      "username": "admin2",
+      "password": "admin2",
+      "email": "admin2@email.com",
+      "favorite-music": []
+    },
+    {
+      "username": "admin23",
+      "password": "admin2",
+      "email": "admin2@email.com",
+      "favorite-music": []
+    },
+    {
+      "username": "admin23",
+      "password": "admin2",
+      "email": "admin2@email.com",
+      "favorite-music": []
+    },
+    {
+      "username": "admin223",
+      "password": "admin2",
+      "email": "admin2@email.com",
+      "favorite-music": []
+    }
+  ]
+}
